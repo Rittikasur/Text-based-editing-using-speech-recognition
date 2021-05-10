@@ -4,17 +4,18 @@ from pywinauto import application
 import time
 import os
 
-r=sr.Recognizer()
-keyboard=Controller()
-app=application.Application()
-app.start("Notepad.exe")
+r=sr.Recognizer() #for speech recognition
+keyboard=Controller() #For controlling the commands from keyborad, which will be executed after voice recognition
+app=application.Application()#accesing the application from the system
+app.start("Notepad.exe") #launching notepad
+
 #word="hellooooooo"
-with sr.Microphone() as source:
+with sr.Microphone() as source: #setting the input source of voice to microphone
 	r.adjust_for_ambient_noise(source)
 	print("Say")
-	audio=r.listen(source)
-	text=r.recognize_google(audio)
-	if( text == 'start'):
+	audio=r.listen(source) #listen to the audio
+	text=r.recognize_google(audio) #converting speech to text
+	if( text == 'start'): #parsing through the converted text, and executing the commands as per the text
 		while(text != 'stop '):
 			print("Say")
 			audio=r.listen(source)
